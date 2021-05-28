@@ -1,0 +1,10 @@
+/.build/**
+/coverage/**
+/docs/**
+/jsdoc/**
+/templates/**
+/__tests__/**/**
+/tmp/**
+/node_modules/**
+README.md
+!.eslintrc.json

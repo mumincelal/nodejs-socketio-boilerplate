@@ -4,5 +4,5 @@
     ],
     "ext": "ts",
     "ignore": [],
-    "exec": "DEBUG=* cross-env NODE_ENV=dev ts-node ./src/server.ts"
+    "exec": "cross-env NODE_ENV=dev ts-node ./src/server.ts"
 }
