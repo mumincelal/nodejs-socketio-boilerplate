@@ -1,50 +1,34 @@
-import jwt from 'jsonwebtoken';
 import { Server, ServerOptions, Socket } from 'socket.io';
-import { ExtendedError } from 'socket.io/dist/namespace';
-import { env, logger } from '../configs';
-import { httpServer } from '../http';
-import { sender } from './sender.socket';
-import { receiver } from './receiver.socket';
+import { httpServer } from '../http-server';
+import { eventSender } from './event-sender.socket';
+import { eventReceiver } from './event-receiver.socket';
+import { InternalServerEvents, ReceivingEvents, SendingEvents, SocketData } from '../interfaces';
 
-export interface ExtendedSocket extends Socket {
-  context: any;
-}
-
-const options: Partial<ServerOptions> = {
-  cors: {
-    origin: '*'
-  }
+const disconnectSocket = (reason: unknown): void => {
+  console.log(reason);
 };
 
-const io = new Server(httpServer, options);
+const connectSocket = (socket: Socket): void => {
+  console.log(`${socket.id} connected`);
 
-io.use((socket: Socket, next: (error?: ExtendedError) => void) => {
-  const { authorization } = socket.handshake.headers;
+  eventSender.initialize();
+  eventReceiver.initialize(socket);
 
-  if (authorization) {
-    const token = authorization.replace('Bearer ', '');
+  socket.on('disconnect', disconnectSocket);
+};
 
-    jwt.verify(token, env.SECRET_KEY, (err, decoded) => {
-      if (err) {
-        return next(new Error(err.message));
-      }
+const bootstrap = (): void => {
+  const options: Partial<ServerOptions> = {
+    cors: {
+      origin: '*'
+    }
+  };
 
-      const extendedSocket = socket as ExtendedSocket;
-      extendedSocket.context = decoded;
-      return next();
-    });
+  const io = new Server<ReceivingEvents, SendingEvents, InternalServerEvents, SocketData>(httpServer, options);
 
-    return next();
-  }
+  io.on('connection', connectSocket);
+};
 
-  return next(new Error('Not Authorized'));
-});
-
-io.on('connection', (socket: Socket) => {
-  logger.info(`Connected: ${socket.id}`);
-
-  sender(socket);
-  receiver(socket);
-
-  socket.on('disconnect', (reason) => logger.info(reason));
-});
+export const sockets = {
+  bootstrap
+};

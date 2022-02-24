@@ -1,19 +1,24 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "incremental": true,
+    "target": "ES2021",
     "module": "CommonJS",
+    "moduleResolution": "Node",
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
     "outDir": "./build",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "alwaysStrict": true,
-    "moduleResolution": "Node",
-    "esModuleInterop": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "baseUrl": "",
+    "paths": {}
   },
   "include": [
     "src/**/*"

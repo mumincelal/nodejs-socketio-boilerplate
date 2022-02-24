@@ -11,7 +11,7 @@
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 12,
+    "ecmaVersion": "latest",
     "sourceType": "module"
   },
   "plugins": [
@@ -19,8 +19,14 @@
     "prettier"
   ],
   "rules": {
-    "import/no-unresolved": ["off"],
-    "import/extensions": ["off"],
-    "import/prefer-default-export": ["off"]
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "import/no-unresolved": "off",
+    "import/prefer-default-export": "off",
+    "import/extensions": "off",
+    "@typescript-eslint/explicit-function-return-type": ["error"],
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "no-param-reassign": ["error", { "props": false }]
   }
 }

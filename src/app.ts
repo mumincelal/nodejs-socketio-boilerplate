@@ -5,4 +5,4 @@ const expressApp = express();
 
 expressApp.use(cors());
 
-export const app = express();
+export const app = expressApp;
