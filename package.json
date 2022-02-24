@@ -1,17 +1,22 @@
 {
-  "name": "sagittarius",
+  "name": "nodejs-socket.io-boilerplate",
   "version": "0.0.1",
-  "description": "NodeJS, Socket.IO Template",
+  "description": "NodeJS-Socket.IO Backend Template",
   "main": "server.ts",
-  "repository": "https://github.com/mumincelal/sagittarius",
+  "private": true,
+  "repository": "https://github.com/mumincelal/nodejs-socketio-boilerplate",
   "author": "Mümin Celal Pinar <mumincelalpinar@gmail.com>",
   "license": "GPL",
-  "private": true,
+  "keywords": [
+    "nodejs",
+    "socket.io",
+    "typescript",
+    "websocket"
+  ],
   "scripts": {
     "dev": "nodemon",
-    "prepare": "husky install",
     "lint": "eslint \"src/**/*.ts\"",
-    "format": "prettier --write src && eslint \"src/**/*.ts\"--fix"
+    "format": "prettier --write src/**/*.ts && eslint \"src/**/*.ts\" --fix"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -23,23 +28,18 @@
     "winston": "^3.3.3"
   },
   "devDependencies": {
-    "@commitlint/cli": "^12.1.4",
-    "@types/express": "^4.17.12",
-    "@types/jsonwebtoken": "^8.5.1",
-    "@types/node": "^15.6.1",
-    "@types/socket.io": "^3.0.2",
-    "@typescript-eslint/eslint-plugin": "^4.25.0",
-    "@typescript-eslint/parser": "^4.25.0",
-    "eslint": "^7.27.0",
-    "eslint-config-airbnb-base": "^14.2.1",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.23.3",
-    "eslint-plugin-prettier": "^3.4.0",
-    "husky": "^6.0.0",
-    "lint-staged": "^11.0.0",
-    "nodemon": "^2.0.7",
-    "prettier": "^2.3.0",
-    "ts-node": "^10.0.0",
-    "typescript": "^4.3.2"
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
+    "ts-node": "^10.5.0",
+    "typescript": "^4.5.5"
   }
 }

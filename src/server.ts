@@ -1,9 +1,17 @@
-import { env, logger } from './configs';
-import { httpServer } from './http';
-import './sockets';
+import { Request, Response } from 'express';
+import { app } from './app';
+import { env } from './configs/env';
+import { httpServer } from './http-server';
+import { sockets } from './sockets';
 
-const port = env.PORT;
+const PORT = env.APP_PORT;
 
-httpServer.listen(port, () => {
-  logger.info(`Server started on ${port}`);
+app.get('/health', (req: Request, res: Response) => {
+  res.json({ message: 'Server is up' });
+});
+
+sockets.bootstrap();
+
+httpServer.listen(PORT, () => {
+  console.log(`Server started on ${PORT}...`);
 });
